@@ -27,8 +27,8 @@ class Env extends Core {
 			return self::$env = self::$cache->get(self::cacheName);
 			
 		if ($file = file_get_contents(ROOT.'.env')) {
-			$list = explode(PHP_EOL,$file);
-			$arrCfg = [];
+			$list = preg_split("/\n|\r\n/", $file);
+			
 			foreach($list as $li) {
 				if ((isset($li[0]) && $li[0]=='#') || !$li)
 					continue;
