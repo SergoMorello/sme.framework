@@ -10,12 +10,12 @@ return [
 
 		//Cacher
 		'cache/index',
-		'cache/object',
+		'cache/cache_object',
 		'cache/cache',
 		'cache/helper',
 
 		//Storage
-		'storage/object',
+		'storage/storage_object',
 		'storage/storage',
 
 		//Compressor

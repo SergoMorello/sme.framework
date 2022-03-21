@@ -20,7 +20,7 @@ return [
 		'view/view',
 		'response/objects/cookie',
 		'response/objects/redirect',
-		'response/object',
+		'response/response_object',
 		'response/response',
 		'route/route_core',
 		'route/route_instance',

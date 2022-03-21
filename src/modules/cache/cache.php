@@ -1,7 +1,7 @@
 <?php
 namespace SME\Modules;
 
-use SME\Modules\Cache\Object;
+use SME\Modules\Cache\CacheObject;
 
 class Cache {
 	public static function __callStatic($name, $arg) {
@@ -13,7 +13,7 @@ class Cache {
 	}
 
 	private static function callMethod($name, $arg) {
-		$obj = new Object;
+		$obj = new CacheObject;
 		if (!method_exists($obj, $name))
 			throw new \Exception('Method "'.$name.'" not fount in Cache class', 1);
 		return $obj->$name(...$arg);
