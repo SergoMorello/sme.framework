@@ -6,7 +6,7 @@ class Response {
 	public function __call($name, $arg) {
 		$response = self::make('');
 		if (method_exists($response, $name))
-			$response->$name(...$arg);
+			return $response->$name(...$arg);
 		else
 			throw new \Exception("In response object method \"".$name."\" not found", 1);
 	}
@@ -14,7 +14,7 @@ class Response {
 	public static function __callStatic($name, $arg) {
 		$response = self::make('');
 		if (method_exists($response, $name))
-			$response->$name(...$arg);
+			return $response->$name(...$arg);
 		else
 			throw new \Exception("In response object method \"".$name."\" not found", 1);
 	}

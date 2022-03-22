@@ -15,7 +15,7 @@ class Middleware extends Core {
 				self::declare($name, $nameClass);
 			}
 		};
-		if ($init = App::include('app.appMiddleware')) {
+		if ($init = App::include('.app.appMiddleware')) {
 			if (App::isConsole()) {
 				if (isset($init['console']))
 					$initFnc($init['console']);

@@ -27,7 +27,7 @@ class Lang {
 
 	private static function getData($string) {
 		$pathArr = explode('.', $string);
-		$data = App::include('app.Lang.'.App::getLocale().'.'.$pathArr[0]);
+		$data = App::include('.app.Lang.'.App::getLocale().'.'.$pathArr[0]);
 		unset($pathArr[0]);
 		return (object)[
 			'path' => $pathArr,

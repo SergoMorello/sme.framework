@@ -6,27 +6,44 @@ use SME\Core\Response\Response;
 
 class Redirect {
 
-	public static function route($name, $props = []) {
-		return self::rdr(route($name,$props));
+	private $response;
+
+	public function __construct() {
+		$this->response = new Response;
 	}
 
-	public static function rdr($url) {
-		return Response::header('Location', $url);
+	public function __toString() {
+		return (string)$this->response;
 	}
 
-	public static function back() {
+	public function url($url) {
+		$this->response = $this->response->header('Location', $url);
+		return $this;
+	}
+
+	public function route($name, $props = []) {
+		$this->response = $this->response->header('Location', route($name,$props));
+		return $this;
+	}
+
+	public function back() {
 		self::setOldInputs();
-		self::rdr(Request::server('HTTP_REFERER'));
-		return new self;
+		$this->response = $this->response->header('Location', Request::server('HTTP_REFERER'));
+		return $this;
 	}
 
-	public static function withErrors($data) {
+	public function withCookie(...$args) {
+		$this->response = $this->response->cookie(...$args);
+		return $this;
+	}
+
+	public function withErrors($data) {
 		if (!is_array($data))
 			return;
 		session(['__withErrors' => $data]);
 	}
 
-	private static function setOldInputs() {
+	private function setOldInputs() {
 		session(['__oldInputs' => Request::all()]);
 	}
 }

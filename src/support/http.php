@@ -24,4 +24,8 @@ class Cookie {
 	public static function get($name = null) {
 		return Request::cookie($name);
 	}
+
+	public static function forget($name) {
+		return Request::cookie()->forget($name);
+	}
 }

@@ -19,7 +19,7 @@ class Exception extends \Exception {
 	public static function throw($exception) {
 		if (!$exception instanceof ExceptionError) {
 			try {
-				if (App::include('app.Exceptions.handlerException'))
+				if (App::include('.app.Exceptions.handlerException'))
 					App::__return((new \App\Exceptions\handlerException)->render(request(), $exception));
 			} catch (\Throwable $e) {
 				throw new ExceptionError($e->getMessage(), $e->getFile(), $e->getLine());
