@@ -1,12 +1,14 @@
 {
-    "name": "sme/framework",
-    "description": "fast mvc framework",
-    "type": "library",
-    "license": "MIT",
-    "autoload": {
-        "files": [
+	"name": "sme/framework",
+	"description": "Fast mvc framework",
+	"type": "library",
+	"license": "MIT",
+	"autoload": {
+		"files": [
 			"init.php"
 		]
-    },
-    "require": {}
+	},
+	"require": {
+		"php": "^7.0.0"
+	}
 }
