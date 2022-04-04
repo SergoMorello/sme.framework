@@ -166,4 +166,21 @@ class ValidateIs {
 			return true;
 		return is_array($var) ? true : false;
 	}
+
+	public static function date($var){
+		if (empty($var))
+			return true;
+		if (!is_string($var))
+			return false;
+
+		$strlen = strlen($var);
+		
+		$check = function($format) use (&$var) {
+			return $var === date($format, strtotime($var));
+		};
+		if ($strlen >= 10 && $strlen <=19)
+			return $check('Y-m-d H:i:s') ? true : $check('Y-m-d');
+		else
+			return false;
+	}
 }

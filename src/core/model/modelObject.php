@@ -1,6 +1,8 @@
 <?php
 namespace SME\Core\Model;
 
+use SME\Core\Daten\DatenObject;
+
 class ModelObject extends ModelCore implements \ArrayAccess, \Countable {
 	private $__paginate, $__count, $__lastKey;
 
@@ -40,12 +42,16 @@ class ModelObject extends ModelCore implements \ArrayAccess, \Countable {
 	}
 
 	private function setVars($result) {
+		
 		if (is_array($result) || is_object($result)) {
 			foreach($result as $key => $value) {
-				$this->$key = $value;
+				if (is_array($value) || is_object($value))
+					$this->$key = new self($value);
+				else
+					$this->$key = !empty($value) && is()->date($value) ? new DatenObject(strtotime($value)) : $value;
 				$this->__lastKey = $key;
 				++$this->__count;
-			}	
+			}
 		}
 	}
 	
