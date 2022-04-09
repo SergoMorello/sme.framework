@@ -178,8 +178,8 @@ class ValidateIs {
 		$check = function($format) use (&$var) {
 			return $var === date($format, strtotime($var));
 		};
-		if ($strlen >= 10 && $strlen <=19)
-			return $check('Y-m-d H:i:s') ? true : $check('Y-m-d');
+		if ($strlen >= 10 && $strlen <=30)
+			return $check('Y-m-d H:i:s') || $check('Y-m-d') || $check(DATE_RFC822) ? true : false;
 		else
 			return false;
 	}
